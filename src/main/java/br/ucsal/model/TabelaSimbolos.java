@@ -6,23 +6,23 @@ public class TabelaSimbolos {
 	public Integer numEntrada;
 	public String lexame;
 	public String tipo;
-	public String ocorrenciaLinha;
-	public Integer QtdCaracAntesTrunc;
-	public Integer QtdCaracDepoisTrunc;
+	public String ocorrenciaLinhas;
+	public Integer qtdCaracAntesTrunc;
+	public Integer qtdCaracDpsTrunc;
 
 	public TabelaSimbolos() {
 	}
 
-	public TabelaSimbolos(String idAtomo, Integer numEntrada, String lexame, String tipo, String ocorrenciaLinha,
-			Integer qtdCaracAntesTrunc, Integer qtdCaracDepoisTrunc) {
+	public TabelaSimbolos(String idAtomo, Integer numEntrada, String lexame, String tipo, String ocorrenciaLinhas,
+			Integer qtdCaracAntesTrunc, Integer qtdCaracDpsTrunc) {
 		super();
 		this.idAtomo = idAtomo;
 		this.numEntrada = numEntrada;
 		this.lexame = lexame;
 		this.tipo = tipo;
-		this.ocorrenciaLinha = ocorrenciaLinha;
-		QtdCaracAntesTrunc = qtdCaracAntesTrunc;
-		QtdCaracDepoisTrunc = qtdCaracDepoisTrunc;
+		this.ocorrenciaLinhas = ocorrenciaLinhas;
+		this.qtdCaracAntesTrunc = qtdCaracAntesTrunc;
+		this.qtdCaracDpsTrunc = qtdCaracDpsTrunc;
 	}
 
 	public String getIdAtomo() {
@@ -57,27 +57,27 @@ public class TabelaSimbolos {
 		this.tipo = tipo;
 	}
 
-	public String getOcorrenciaLinha() {
-		return ocorrenciaLinha;
+	public String getOcorrenciaLinhas() {
+		return ocorrenciaLinhas;
 	}
 
-	public void setOcorrenciaLinha(String ocorrenciaLinha) {
-		this.ocorrenciaLinha = ocorrenciaLinha;
+	public void setOcorrenciaLinhas(String ocorrenciaLinhas) {
+		this.ocorrenciaLinhas = ocorrenciaLinhas;
 	}
 
 	public Integer getQtdCaracAntesTrunc() {
-		return QtdCaracAntesTrunc;
+		return qtdCaracAntesTrunc;
 	}
 
 	public void setQtdCaracAntesTrunc(Integer qtdCaracAntesTrunc) {
-		QtdCaracAntesTrunc = qtdCaracAntesTrunc;
+		this.qtdCaracAntesTrunc = qtdCaracAntesTrunc;
 	}
 
-	public Integer getQtdCaracDepoisTrunc() {
-		return QtdCaracDepoisTrunc;
+	public Integer getQtdCaracDpsTrunc() {
+		return qtdCaracDpsTrunc;
 	}
 
-	public void setQtdCaracDepoisTrunc(Integer qtdCaracDepoisTrunc) {
-		QtdCaracDepoisTrunc = qtdCaracDepoisTrunc;
+	public void setQtdCaracDpsTrunc(Integer qtdCaracDpsTrunc) {
+		this.qtdCaracDpsTrunc = qtdCaracDpsTrunc;
 	}
 }
