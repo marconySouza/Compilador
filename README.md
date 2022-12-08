@@ -1,10 +1,13 @@
 # Compilador
 Compilador
 
-## ideia do projeto
+## Ideia do projeto
 
-Criação de um analisador lexico para matéria Compiladores utilizando Java e eclipseIDE
+Conforme as aulas de Compiladores, a ideia do projeto é a implementação de um analisador lexico Java e eclipseIDE. Tendo como retorno a exibição de relatórios, sendo eles: 
 
-##Experiência da equipe sobre a construção
+• relatório da análise léxica 
+• relatório da tabela de símbolos
+
+## Experiência da equipe sobre a construção
 
 ## Passo a passo p/ executar o programa
