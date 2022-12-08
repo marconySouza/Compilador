@@ -4,7 +4,7 @@ public class TabelaSimbolos {
 
 	public String idAtomo;
 	public Integer numEntrada;
-	public String lexame;
+	public String lexeme;
 	public String tipo;
 	public String ocorrenciaLinhas;
 	public Integer qtdCaracAntesTrunc;
@@ -13,12 +13,12 @@ public class TabelaSimbolos {
 	public TabelaSimbolos() {
 	}
 
-	public TabelaSimbolos(String idAtomo, Integer numEntrada, String lexame, String tipo, String ocorrenciaLinhas,
+	public TabelaSimbolos(String idAtomo, Integer numEntrada, String lexeme, String tipo, String ocorrenciaLinhas,
 			Integer qtdCaracAntesTrunc, Integer qtdCaracDpsTrunc) {
 		super();
 		this.idAtomo = idAtomo;
 		this.numEntrada = numEntrada;
-		this.lexame = lexame;
+		this.lexeme = lexeme;
 		this.tipo = tipo;
 		this.ocorrenciaLinhas = ocorrenciaLinhas;
 		this.qtdCaracAntesTrunc = qtdCaracAntesTrunc;
@@ -41,12 +41,12 @@ public class TabelaSimbolos {
 		this.numEntrada = numEntrada;
 	}
 
-	public String getLexame() {
-		return lexame;
+	public String getLexeme() {
+		return lexeme;
 	}
 
-	public void setLexame(String lexame) {
-		this.lexame = lexame;
+	public void setLexeme(String lexeme) {
+		this.lexeme = lexeme;
 	}
 
 	public String getTipo() {

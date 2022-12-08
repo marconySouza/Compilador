@@ -61,13 +61,13 @@ public class TabelaSimbolosUtil {
 			this.listaTabelaReservados.put("114", ">=");
 			this.listaTabelaReservados.put("115", "==");
 			this.listaTabelaReservados.put("116", "!=");
-			this.listaTabelaReservados.put("117", "#");
-			this.listaTabelaReservados.put("118", "+");
-			this.listaTabelaReservados.put("119", "-");
-			this.listaTabelaReservados.put("120", "*");
-			this.listaTabelaReservados.put("121", "/");
-			this.listaTabelaReservados.put("122", "%");
-			this.listaTabelaReservados.put("123", ":=");
+			this.listaTabelaReservados.put("116.2", "#");
+			this.listaTabelaReservados.put("117", "+");
+			this.listaTabelaReservados.put("118", "-");
+			this.listaTabelaReservados.put("119", "*");
+			this.listaTabelaReservados.put("120", "/");
+			this.listaTabelaReservados.put("121", "%");
+			this.listaTabelaReservados.put("122", ":=");
 			this.listaTabelaReservados.put("201", "nom-programa");
 			this.listaTabelaReservados.put("202", "variavel");
 			this.listaTabelaReservados.put("203", "nom-funcao");
@@ -79,33 +79,22 @@ public class TabelaSimbolosUtil {
 		return listaTabelaReservados;
 	}
 
-	public TabelaSimbolos getLexame(String lexame) {
-		Optional<TabelaSimbolos> result = listaTabelaSimbolos.stream().parallel().filter(x -> x.lexame.equals(lexame))
+	public TabelaSimbolos getLexeme(String lexeme) {
+		Optional<TabelaSimbolos> result = listaTabelaSimbolos.stream().parallel().filter(x -> x.lexeme.equals(lexeme))
 				.findFirst();
 		return result.isPresent() ? result.get() : null;
 	}
 
-	public void addLexame(String codAtomo, String lexame, String tipo, String ocorrenciaLinhas, Integer qtdAntesTrunc,
+	public void addLexeme(String codAtomo, String lexeme, String tipo, String ocorrenciaLinhas, Integer qtdAntesTrunc,
 			Integer qtdDpsTrunc) {
-		TabelaSimbolos elemento = new TabelaSimbolos(codAtomo, listaTabelaSimbolos.size(), lexame, tipo,
+		TabelaSimbolos elemento = new TabelaSimbolos(codAtomo, listaTabelaSimbolos.size(), lexeme, tipo,
 				ocorrenciaLinhas, qtdAntesTrunc, qtdDpsTrunc);
 		listaTabelaSimbolos.add(elemento);
 	}
 
-	public void updateLexame(String posicao, TabelaSimbolos simbolosModel) {
+	public void updateLexeme(String posicao, TabelaSimbolos simbolosModel) {
 		String linhasOcorrencia = simbolosModel.getOcorrenciaLinhas();
-		String[] split = linhasOcorrencia.split(",");
-		if (split.length < 5) {
-			linhasOcorrencia += ", " + posicao;
-		}
+		linhasOcorrencia += ", " + posicao;
 		simbolosModel.setOcorrenciaLinhas(linhasOcorrencia);
-	}
-
-	public TabelaSimbolos getLastIndex() {
-		return listaTabelaSimbolos.get(listaTabelaSimbolos.size() - 1);
-	}
-
-	public void clearTabelaSimbolos() {
-		listaTabelaSimbolos.clear();
 	}
 }
