@@ -1,6 +1,6 @@
 # Compilador
 
-Compilador
+"Um compilador é um programa de computador que, a partir de um código fonte escrito em uma linguagem compilada, cria um programa semanticamente equivalente, porém escrito em outra linguagem, código objeto. Classicamente, um compilador *traduz* um programa de uma linguagem textual."
 
 ## Ideia do projeto
 
