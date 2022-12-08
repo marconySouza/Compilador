@@ -17,21 +17,21 @@ public class AnalisadorLex {
 		/*
 		 * TODO adicionar aqui a interação com o usuário
 		 * 
-		 * ENTRADA:
-		 * Caso seja fornecido apenas o nome do arquivo, este deve ser procurado no
-		 * diretório corrente onde o AnalisadorLexico.exe está sendo executado. Caso
-		 * seja fornecido o caminho completo mais o nome do arquivo como parâmetro de
-		 * entrada, o arquivo deve ser procurado neste caminho indicado na entrada.
+		 * ENTRADA: Caso seja fornecido apenas o nome do arquivo, este deve ser
+		 * procurado no diretório corrente onde o AnalisadorLexico.exe está sendo
+		 * executado. Caso seja fornecido o caminho completo mais o nome do arquivo como
+		 * parâmetro de entrada, o arquivo deve ser procurado neste caminho indicado na
+		 * entrada.
 		 * 
 		 * 
-		 * SAÍDA:
-		 * deverão ser gerados obrigatoriamente dois arquivos de saída em
+		 * SAÍDA: deverão ser gerados obrigatoriamente dois arquivos de saída em
 		 * separado na mesma pasta onde o texto fonte parâmetro se encontra: .TAB e .LEX
 		 */
 
-		String caminhoArquivoLido = "";//Arquivo de texto fonte inserido pelo usuário
+		String caminhoArquivoLido = "";// Arquivo de texto fonte inserido pelo usuário
 		try {
-			analise(caminhoArquivoLido);//Metodo de analise lexica passando como parametro o caminho do arquivo de entrada
+			analise(caminhoArquivoLido);// Metodo de analise lexica passando como parametro o caminho do arquivo de
+										// entrada
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -100,6 +100,7 @@ public class AnalisadorLex {
 
 				// Vai na tabela validar as palavras reservadas que são seguidas de uma função
 				if (analisador.validaPalavrasReservadasSeguidoDeFuncao(atomo, aux)) {
+					System.out.println(aux);
 					auxString = aux.toString();
 					analisador.addLexeme(auxString, numLinha, posicao);
 					aux.delete(0, aux.length());
@@ -109,6 +110,7 @@ public class AnalisadorLex {
 				// Valida se existe uma caracter valida pós simbolo de operação
 				else if (analisador.validaCaracterValidoAposOperador(atomo, proxAtomo)) {
 					aux.append(atomo);
+					System.out.println(aux);
 					auxString = aux.toString();
 					analisador.addLexeme(auxString, numLinha, posicao);
 					aux.delete(0, aux.length());
@@ -116,6 +118,7 @@ public class AnalisadorLex {
 				// Valida se existe um caracter valido seguido por um simbolo de operação
 				else if (analisador.validaCaracterValidoSeguidoPorOperacao(atomo, proxAtomo)) {
 					aux.append(atomo);
+					System.out.println(aux);
 					auxString = aux.toString();
 					analisador.addLexeme(auxString, numLinha, posicao);
 					aux.delete(0, aux.length());
@@ -132,6 +135,7 @@ public class AnalisadorLex {
 					// se não chegou ao final da linha, adiciona lexeme
 					else {
 						aux.append(atomo);
+						System.out.println(aux);
 						auxString = aux.toString();
 						analisador.addLexeme(auxString, numLinha, posicao);
 					}
@@ -140,12 +144,14 @@ public class AnalisadorLex {
 				else {
 
 					if (auxAspas.length() > 1) {
+						System.out.println(aux);
 						auxString = auxAspas.toString();
 						analisador.addLexeme(auxString, numLinha, posicao);
 						auxAspas.delete(0, auxAspas.length());
 					}
 
 					if (aux.length() > 0) {
+						System.out.println(auxAspas);
 						auxString = aux.toString();
 						analisador.addLexeme(auxString, numLinha, posicao);
 						aux.delete(0, aux.length());
@@ -154,10 +160,10 @@ public class AnalisadorLex {
 
 			}
 		}
-		//removendo o cod 116.2 (#) e deixando apenas o cod 116 (!=) 
+		// removendo o cod 116.2 (#) e deixando apenas o cod 116 (!=)
 		AnalisadorUtil.getTabelaReservada().remove("116.2");
 		PlotArquivos.tab(caminhoArquivoEntrada, AnalisadorUtil.getUtil());
-        PlotArquivos.lex(caminhoArquivoEntrada, AnalisadorUtil.getUtil());
-        analisador.cleanTabelaSimbolos();
+		PlotArquivos.lex(caminhoArquivoEntrada, AnalisadorUtil.getUtil());
+		analisador.cleanTabelaSimbolos();
 	}
 }
