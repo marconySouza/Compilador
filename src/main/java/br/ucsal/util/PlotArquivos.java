@@ -30,7 +30,7 @@ public class PlotArquivos {
 		for (TabelaSimbolos tab : util.getTabelaSimbolos()) {
 			bufferedWriter.write("indice: " + tab.numEntrada + "\t" + "| codigo atomo: " + tab.getIdAtomo() + "\t"
 					+ "| lexeme: " + tab.getLexeme() + "\t" + "| qtd. antes truncagem: " + tab.getQtdCaracAntesTrunc()
-					+ "\t" + "| qtd. depois truncagem" + tab.getQtdCaracDpsTrunc() + "\t" + tab.getTipo() + "\t"
+					+ "\t" + "| qtd. depois truncagem: " + tab.getQtdCaracDpsTrunc() + "\t" + tab.getTipo() + "\t"
 					+ "| linhas que houveram ocorrencias: " + tab.getOcorrenciaLinhas());
 			bufferedWriter.newLine();
 		}
@@ -40,7 +40,7 @@ public class PlotArquivos {
 	}
 
 	public static void lex(String nomeArquivo, TabelaSimbolosUtil util) throws IOException {
-		File file = new File(nomeArquivo + ".TAB");
+		File file = new File(nomeArquivo + ".LEX");
 		file.createNewFile();
 		FileWriter fileWriter = new FileWriter(file);
 		BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
@@ -52,7 +52,7 @@ public class PlotArquivos {
 		bufferedWriter.write("Thiago de Melo Santos Gomes\t | \tthiago.gomes@ucsal.edu.br\t | \t(71) 98628-4163\n");
 		bufferedWriter.write("####### ANALISE LEXICA #######\n");
 		for (TabelaSimbolos tab : util.getTabelaSimbolos()) {
-			bufferedWriter.write("Lexeme:" + tab.getLexeme() + "\t" + "| codigo atomo: " + tab.getIdAtomo());
+			bufferedWriter.write("Lexeme: " + tab.getLexeme() + "\t" + "| codigo atomo: " + tab.getIdAtomo());
 			if (util.getTabelaSimbolos().contains(tab)) {
 				bufferedWriter.write("\t" + "| indice: " + tab.getNumEntrada());
 			}

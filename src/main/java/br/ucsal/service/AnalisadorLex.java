@@ -12,11 +12,12 @@ import br.ucsal.util.TabelaSimbolosUtil;
 public class AnalisadorLex {
 
 	private static AnalisadorUtil analisador = new AnalisadorUtil();
+	private static TabelaSimbolosUtil util = new TabelaSimbolosUtil();
 	private static char[] atomos;
 
 	public static void main(String[] args) {
 
-		TabelaSimbolosUtil.inicializarTabelaReservados();
+		util.inicializarTabelaReservados();
 		
 		String caminhoArquivoLido = Console.askFilePath();// Arquivo de texto fonte inserido pelo usuário
 		try {
@@ -30,7 +31,7 @@ public class AnalisadorLex {
 	public static void analise(String caminhoArquivoEntrada) throws IOException {
 		Scanner sc = new Scanner(new File(caminhoArquivoEntrada));
 		int numLinha = 0;
-		boolean filtrarComentarioBloco = true;
+		boolean filtrarComentarioBloco = false;
 		boolean filtrarAspas = false;
 
 		// Loop de iteração no texto fonte
@@ -49,7 +50,7 @@ public class AnalisadorLex {
 			while (posicao < atomos.length) {
 				atomo = atomos[posicao];
 				try {
-					proxAtomo = atomos[posicao + 1];
+					if(atomos.length - 1 != posicao)proxAtomo = atomos[posicao + 1];
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -89,10 +90,9 @@ public class AnalisadorLex {
 				}
 
 				// Vai na tabela validar as palavras reservadas que são seguidas de uma função
-				if (analisador.validaPalavrasReservadasSeguidoDeFuncao(atomo, aux)) {
-					System.out.println(aux);
+				if (analisador.validaPalavrasReservadasSeguidoDeFuncao(atomo, aux, util)) {
 					auxString = aux.toString();
-					analisador.addLexeme(auxString, numLinha, posicao);
+					analisador.addLexeme(auxString, numLinha, posicao, util);
 					aux.delete(0, aux.length());
 
 				}
@@ -102,7 +102,7 @@ public class AnalisadorLex {
 					aux.append(atomo);
 					System.out.println(aux);
 					auxString = aux.toString();
-					analisador.addLexeme(auxString, numLinha, posicao);
+					analisador.addLexeme(auxString, numLinha, posicao, util);
 					aux.delete(0, aux.length());
 				}
 				// Valida se existe um caracter valido seguido por um simbolo de operação
@@ -110,7 +110,7 @@ public class AnalisadorLex {
 					aux.append(atomo);
 					System.out.println(aux);
 					auxString = aux.toString();
-					analisador.addLexeme(auxString, numLinha, posicao);
+					analisador.addLexeme(auxString, numLinha, posicao, util);
 					aux.delete(0, aux.length());
 				} else if (analisador.validaBloco(atomo) || analisador.validaCaracter(atomo)
 						|| analisador.validaListaParam(atomo) || analisador.validaNumero(atomo)
@@ -119,7 +119,7 @@ public class AnalisadorLex {
 						|| analisador.validaOperadorMult(atomo) && !analisador.validaEspaco(atomo)) {
 
 					// valida se chegou ao final da linha
-					if (!analisador.eof(line, (posicao + 1))) {
+					if (analisador.eof(line, (posicao + 1))) {
 						aux.append(atomo);
 					}
 					// se não chegou ao final da linha, adiciona lexeme
@@ -127,7 +127,7 @@ public class AnalisadorLex {
 						aux.append(atomo);
 						System.out.println(aux);
 						auxString = aux.toString();
-						analisador.addLexeme(auxString, numLinha, posicao);
+						analisador.addLexeme(auxString, numLinha, posicao, util);
 					}
 				}
 				// cenario para se encontrar um caracter delimitador
@@ -136,24 +136,25 @@ public class AnalisadorLex {
 					if (auxAspas.length() > 1) {
 						System.out.println(aux);
 						auxString = auxAspas.toString();
-						analisador.addLexeme(auxString, numLinha, posicao);
+						analisador.addLexeme(auxString, numLinha, posicao, util);
 						auxAspas.delete(0, auxAspas.length());
 					}
 
 					if (aux.length() > 0) {
 						System.out.println(auxAspas);
 						auxString = aux.toString();
-						analisador.addLexeme(auxString, numLinha, posicao);
+						analisador.addLexeme(auxString, numLinha, posicao, util);
 						aux.delete(0, aux.length());
 					}
 				}
-
+					posicao++;
 			}
 		}
 		// removendo o cod 116.2 (#) e deixando apenas o cod 116 (!=)
-		AnalisadorUtil.getTabelaReservada().remove("116.2");
+		util.getTabelaReservados().remove("116.2");
 		PlotArquivos.tab(caminhoArquivoEntrada, AnalisadorUtil.getUtil());
 		PlotArquivos.lex(caminhoArquivoEntrada, AnalisadorUtil.getUtil());
+		Console.displayReportsPath(caminhoArquivoEntrada);
 		analisador.cleanTabelaSimbolos();
 	}
 }

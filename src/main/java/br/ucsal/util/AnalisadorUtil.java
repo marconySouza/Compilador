@@ -7,7 +7,6 @@ import br.ucsal.model.TabelaSimbolos;
 public class AnalisadorUtil {
 
 	private static TabelaSimbolosUtil util = new TabelaSimbolosUtil();
-	private static Map<String, String> tabelaReservada = util.getTabelaReservados();
 
 	public String getTipoLexeme(String lexeme) {
 
@@ -24,10 +23,9 @@ public class AnalisadorUtil {
 			}
 
 		} catch (Exception e) {
-			e.printStackTrace();
 		}
 
-		return "Tipo inconclusivo";
+		return "operador";
 	}
 
 	public boolean validaNumero(char atomo) {
@@ -87,12 +85,12 @@ public class AnalisadorUtil {
 		return (atomo == '*' && proxAtomo == '/');
 	}
 
-	public boolean validaPalavrasReservadasSeguidoDeFuncao(char atomo, StringBuffer lexeme) {
-		return tabelaReservada.containsValue(lexeme.toString()) || validaBloco(atomo);
+	public boolean validaPalavrasReservadasSeguidoDeFuncao(char atomo, StringBuffer lexeme, TabelaSimbolosUtil util) {
+		return util.getTabelaReservados().containsValue(lexeme.toString()) || validaBloco(atomo);
 	}
 
-	public String getCodAtomo(String atomo) {
-		for (Map.Entry<String, String> entry : tabelaReservada.entrySet()) {
+	public String getCodAtomo(String atomo, TabelaSimbolosUtil util) {
+		for (Map.Entry<String, String> entry : util.getTabelaReservados().entrySet()) {
 			if (entry.getValue().equals(atomo)) {
 				return entry.getKey();
 			}
@@ -114,11 +112,11 @@ public class AnalisadorUtil {
 		return validaOperador(atomo) && validaCaracter(proxAtomo) || validaNumero(proxAtomo);
 	}
 
-	public void addLexeme(String lexeme, int numLinha, int posicao) {
+	public void addLexeme(String lexeme, int numLinha, int posicao, TabelaSimbolosUtil util) {
 		TabelaSimbolos lexemeExistente = util.getLexeme(lexeme);
 		String ocorrenciaLinha = numLinha + ":" + (posicao - lexeme.length() + 1);
 		if (lexemeExistente == null) {
-			String codAtomo = getCodAtomo(lexeme);
+			String codAtomo = getCodAtomo(lexeme, util);
 			String tipo = getTipoLexeme(lexeme);
 			Integer tamanhoAntesTrunc = lexeme.length();
 			Integer tamanhoDpsTruncLexeme = null;
@@ -141,14 +139,6 @@ public class AnalisadorUtil {
 
 	public String truncLexeme(String lexeme) {
 		return lexeme.substring(0, 29);
-	}
-
-	public static Map<String, String> getTabelaReservada() {
-		return tabelaReservada;
-	}
-
-	public static void setTabelaReservada(Map<String, String> tabelaReservada) {
-		AnalisadorUtil.tabelaReservada = tabelaReservada;
 	}
 
 	public static TabelaSimbolosUtil getUtil() {
