@@ -4,8 +4,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+import br.ucsal.tui.Console;
 import br.ucsal.util.AnalisadorUtil;
 import br.ucsal.util.PlotArquivos;
+import br.ucsal.util.TabelaSimbolosUtil;
 
 public class AnalisadorLex {
 
@@ -14,21 +16,9 @@ public class AnalisadorLex {
 
 	public static void main(String[] args) {
 
-		/*
-		 * TODO adicionar aqui a interação com o usuário
-		 * 
-		 * ENTRADA: Caso seja fornecido apenas o nome do arquivo, este deve ser
-		 * procurado no diretório corrente onde o AnalisadorLexico.exe está sendo
-		 * executado. Caso seja fornecido o caminho completo mais o nome do arquivo como
-		 * parâmetro de entrada, o arquivo deve ser procurado neste caminho indicado na
-		 * entrada.
-		 * 
-		 * 
-		 * SAÍDA: deverão ser gerados obrigatoriamente dois arquivos de saída em
-		 * separado na mesma pasta onde o texto fonte parâmetro se encontra: .TAB e .LEX
-		 */
-
-		String caminhoArquivoLido = "";// Arquivo de texto fonte inserido pelo usuário
+		TabelaSimbolosUtil.inicializarTabelaReservados();
+		
+		String caminhoArquivoLido = Console.askFilePath();// Arquivo de texto fonte inserido pelo usuário
 		try {
 			analise(caminhoArquivoLido);// Metodo de analise lexica passando como parametro o caminho do arquivo de
 										// entrada
@@ -38,7 +28,7 @@ public class AnalisadorLex {
 	}
 
 	public static void analise(String caminhoArquivoEntrada) throws IOException {
-		Scanner sc = new Scanner(new File(caminhoArquivoEntrada + ".222"));
+		Scanner sc = new Scanner(new File(caminhoArquivoEntrada));
 		int numLinha = 0;
 		boolean filtrarComentarioBloco = true;
 		boolean filtrarAspas = false;

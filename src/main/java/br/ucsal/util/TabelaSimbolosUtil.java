@@ -13,6 +13,13 @@ public class TabelaSimbolosUtil {
 	private Map<String, String> listaTabelaReservados = new HashMap<>();
 	private static List<TabelaSimbolos> listaTabelaSimbolos = new LinkedList<>();
 
+	/**
+	 * Método que deve inicializar a tabala de símbolos Reservados
+	 */
+	public static void inicializarTabelaReservados() {
+		// TODO Auto-generated method stub
+		
+	}
 	public List<TabelaSimbolos> getTabelaSimbolos() {
 		return listaTabelaSimbolos;
 	}
@@ -97,4 +104,5 @@ public class TabelaSimbolosUtil {
 		linhasOcorrencia += ", " + posicao;
 		simbolosModel.setOcorrenciaLinhas(linhasOcorrencia);
 	}
+
 }
