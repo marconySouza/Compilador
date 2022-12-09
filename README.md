@@ -19,7 +19,7 @@ Durante o desenvolvimento do analisador léxico, foram encontradas algumas dific
 
 ## Passo a passo p/ executar o programa
 - É necessário ter o java 8 instalado na máquina;
-- Adicionar o mesmo nas variaveis do sistema.
+- Adicionar o mesmo nas variáveis do sistema.
 
 Dentro da pasta do projeto tem uma outra pasta chamada "exe" -> pasta que contém o executável do programa.
 Ao executar o "staticChecker.exe" é necessário informar o caminho que o usuário deseja fazer o dowload para gerar os relatórios.
