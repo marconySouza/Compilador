@@ -29,6 +29,8 @@ public class AnalisadorLex {
 	}
 
 	public static void analise(String caminhoArquivoEntrada) throws IOException {
+		File arquivoEntrada = new File(caminhoArquivoEntrada);
+		String pastaArquivoEntrada = arquivoEntrada.getCanonicalPath(); 
 		Scanner sc = new Scanner(new File(caminhoArquivoEntrada));
 		int numLinha = 0;
 		boolean filtrarComentarioBloco = false;
@@ -154,7 +156,7 @@ public class AnalisadorLex {
 		util.getTabelaReservados().remove("116.2");
 		PlotArquivos.tab(caminhoArquivoEntrada, AnalisadorUtil.getUtil());
 		PlotArquivos.lex(caminhoArquivoEntrada, AnalisadorUtil.getUtil());
-		Console.displayReportsPath(caminhoArquivoEntrada);
+		Console.displayReportsPath(pastaArquivoEntrada);
 		analisador.cleanTabelaSimbolos();
 	}
 }

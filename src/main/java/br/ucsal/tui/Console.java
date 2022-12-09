@@ -37,7 +37,13 @@ public class Console {
 	 * @param reportsPath - Caminho do diretório onde foram salvors os relatórios.
 	 * */
 	public static void displayReportsPath(String reportsPath) {
-		System.out.println("Processamento concluído :D \n" + "Os relatórios da compilação foram salvos em: " + reportsPath);
+		int aux = 0;
+		for(int i=0; i < reportsPath.length(); i++ ) {
+			if(reportsPath.charAt(i) == '\\') {
+				aux = i;
+			}
+		}
+		System.out.println("Processamento concluído :D \n" + "Os relatórios da compilação foram salvos em: " + reportsPath.substring(0, aux));
 	}
 	
 	/**
