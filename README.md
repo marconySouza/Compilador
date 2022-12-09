@@ -17,6 +17,9 @@ Durante o desenvolvimento do analisador léxico, foram encontradas algumas dific
 ## Diagrama do projeto conceitual 
 ![Diagrama Compilador](https://user-images.githubusercontent.com/57532900/206328397-8b4e9d63-1604-469d-a657-536ee57d052f.png)
 
+## Diagrama do projeto final
+![Diagrama Compilador Final](https://user-images.githubusercontent.com/57532900/206767370-82b4970f-0bf2-47a3-b9db-63285c25181a.png)
+
 ## Passo a passo p/ executar o programa
 - É necessário ter o java 8 instalado na máquina;
 - Adicionar o mesmo nas variáveis do sistema.
@@ -25,4 +28,3 @@ Dentro da pasta do projeto tem uma outra pasta chamada "exe" -> pasta que conté
 Ao executar o "staticChecker.exe" é necessário informar o caminho que o usuário deseja fazer o dowload para gerar os relatórios.
 
 OBS: É necessário ter um arquivo .222 na pasta informada. Se informar apenas o nome do arquivo, é preciso que o mesmo esteja no mesmo local da pasta do executável.
-
